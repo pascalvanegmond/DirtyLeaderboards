@@ -1,0 +1,31 @@
+<h1>
+  Leaderboard for user: {{nickname}}
+</h1>
+
+<div>
+  <label for="nickname">user name: </label>
+  <input id="nickname" [(ngModel)]="nickname" placeholder="nickname">
+  <button (click)="click()">get data</button>
+</div>
+
+<div *ngIf="hasError">
+  <h2>Something went wrong with fetching data!</h2>
+</div>
+
+<div *ngIf="isLoading">
+  <h2>Fetching data. please wait....</h2>
+</div>
+
+<div *ngIf="leaderBoardHasData">
+  <div>
+    <p>Found the following leaderboards</p>
+    <ul class="leaderboards">
+      <li *ngFor="let board of leaderBoards.times">
+        <span (click)="boardSelected(board)">P:{{board.rank.position}} | Stage: {{board.stage.name}} | Car: {{board.car.name}}</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<app-leaderBoard-detail [leaderBoard]="selectedBoard"></app-leaderBoard-detail>

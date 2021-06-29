@@ -1,0 +1,35 @@
+<div *ngIf="leaderBoard">
+
+  <p>Selected Stage: {{leaderBoard.stage.name}}</p>
+  Position: {{leaderBoard.rank.position}} <br/>
+  Time: {{DisplayReadableTime(leaderBoard.bestTime)}} <br/>
+  Stage: {{leaderBoard.stage.name}} <br/>
+  Country: {{leaderBoard.stage.location.country}} <br/>
+  Car: {{leaderBoard.car.name}} <br/>
+
+  <p></p>
+
+  <button (click)="AllStageData()">get stage data</button>
+  <div *ngIf="stageResults">
+    <p>Stage results all cars</p>
+
+    Total records: {{stageResults.total}} <br/>
+    Best record: {{DisplayReadableTime(stageResults.bestDriver.bestTime)}} | {{stageResults.bestDriver.car.name}}<br/>
+    Your record: {{DisplayReadableTime(leaderBoard.bestTime)}} | {{leaderBoard.car.name}}<br/>
+    Least record: {{DisplayReadableTime(stageResults.leastDriver.bestTime)}} | {{stageResults.leastDriver.car.name}} <br/>
+    Your place: {{CalculatePosition(leaderBoard.rank.position, stageResults.total)}}
+  </div>
+
+  <button (click)="AllStageDataByCar()">get stage data by car</button>
+  <div *ngIf="stageResultsByCar">
+    <p>Stage results for: {{leaderBoard.car.name}}</p>
+    
+    Total records: {{stageResultsByCar.total}} <br/>
+    Best record: {{DisplayReadableTime(stageResultsByCar.bestDriver.bestTime)}} | {{stageResultsByCar.bestDriver.car.name}}<br/>
+    Your record: {{DisplayReadableTime(leaderBoard.bestTime)}} | {{leaderBoard.car.name}}<br/>
+    Least record: {{DisplayReadableTime(stageResultsByCar.leastDriver.bestTime)}} | {{stageResultsByCar.leastDriver.car.name}} <br/>
+    <!-- Your place: {{CalculatePosition(leaderBoard.rank.position, stageResultsByCar.total)}} -->
+  </div>
+
+</div>
+
